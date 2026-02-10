@@ -10,7 +10,8 @@
     ],
     "sidebar": [
         ["Components", [
-        ["PbCard", "/components/pb_card/index"]
+        ["PbCard", "/components/pb_card/index"],
+        ["PbButton", "/components/pb_button/index"]
         ]]
     ]
 }

@@ -1,0 +1,72 @@
+---
+title: PbButton
+description: Versatile button component with three styles, color variants, PbIcon support, loading states and full design-system consistency.
+---
+
+# PbButton Widget
+
+The `PbButton` is the primary button component in the Propertybox design system. It comes in three distinct styles:
+
+- **primaryLarge**: prominent full-width call-to-action button (e.g. "Arrange Viewing", "Contact Agent")
+- **secondary**: medium-sized button with multiple color options (e.g. "Save", "Share", "Enquire")
+- **compact**: small pill-shaped button (e.g. tags, inline actions like "Featured")
+
+All variants feature:
+- Fully rounded (pill) corners
+- Momo Trust font with sentence-case text
+- Automatic icon tinting when using `PbIcon`
+- Loading state with centered spinner
+- Disabled state (via `onPressed: null` or `isLoading: true`)
+- Optional fixed width or full-width behavior
+
+<img 
+  src="https://raw.githubusercontent.com/FocalAgent-Limited/propertybox-ui/main/docs/components/pb_button/preview-all-styles.png" 
+  alt="PbButton – primary large, secondary variants, compact" 
+  width="480"
+/>
+
+*(Please replace the image URL with an actual screenshot showing all three styles + color variations once uploaded)*
+
+## Class Definition
+
+```dart
+enum PbButtonStyle {
+  primaryLarge,   // prominent full-width CTA – 48px height
+  secondary,      // flexible color & size – 36px height
+  compact,        // small pill – 28px height
+}
+
+enum PbSecondaryColor {
+  purple,   // #635CF5 – white text & icon
+  teal,     // #0AD0AB – white text & icon
+  dark,     // #0A101D – white text & icon
+  white,    // white background + 1.5px dark border + dark text/icon
+}
+
+class PbButton extends StatelessWidget {
+  final VoidCallback? onPressed;
+  final String label;
+  final PbButtonStyle style;
+  final Widget? icon;               // PbIcon.xxx()
+  final bool iconOnTrailing;
+  final bool isLoading;
+  final PbSecondaryColor? secondaryColor;
+  final bool useWhiteVariant;       // white style for primaryLarge only
+  final double? width;
+
+  const PbButton({
+    super.key,
+    required this.onPressed,
+    required this.label,
+    required this.style,
+    this.icon,
+    this.iconOnTrailing = false,
+    this.isLoading = false,
+    this.secondaryColor,
+    this.useWhiteVariant = false,
+    this.width,
+  });
+
+  // ... full implementation in pb_button.dart ...
+}
+```

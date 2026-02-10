@@ -1,0 +1,82 @@
+# PbCard Widget
+
+The `PbCard` widget is a custom card component used to display content in a stylized container with white background and rounded corners. It is designed to adapt its padding and styling based on the device type, and can optionally display a border around the content. It is provides a consistent and customizable card component for displaying content.
+
+<img src="https://raw.githubusercontent.com/FocalAgent-Limited/propertybox-ui/main/docs/components/pb_card/image1.png" width="200"/>
+
+## Class Definition
+
+```dart
+class PbCard extends StatelessWidget {
+  final Widget child;
+  final bool border;
+
+  const PbCard({required this.child, this.border = true, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final isDesktop = DeviceHelper.isDesktop(context);
+
+    return Container(
+      decoration: BoxDecoration(
+        border: border ? Border.all(color: BrandColors.greyBorderColor, width: 1) : null,
+        borderRadius: BorderRadius.circular(15),
+        color: Colors.white,
+      ),
+      padding: isDesktop
+          ? const EdgeInsets.symmetric(horizontal: 35, vertical: 40)
+          : const EdgeInsets.all(20),
+      child: child,
+    );
+  }
+}
+```
+
+## Properties
+
+- `child` (`Widget`, required): The content to be displayed inside the card. This can be any widget, such as a `Text`, `Image`, or a custom widget.
+
+- `border` (`bool`, optional): Determines whether a border should be displayed around the card. The default value is `true`.
+
+## Usage
+
+To use the `PbCard` widget, simply include it in your widget tree and pass the content you want to display as the `child` property. You can also specify whether you want the card to have a `border` by setting the border property.
+
+## Example
+
+Here is an example of how to use the `PbCard` widget in a Flutter application:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:your_project/PbCard.dart';
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('PbCard Example'),
+      ),
+      body: Center(
+        child: PbCard(
+          border: true,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Hello, World!',
+                style: TextStyle(fontSize: 20),
+              ),
+              SizedBox(height: 10),
+              Text(
+                'This is a custom card widget.',
+                style: TextStyle(fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+```

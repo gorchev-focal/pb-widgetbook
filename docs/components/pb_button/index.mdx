@@ -81,3 +81,70 @@ class PbButton extends StatelessWidget {
 - `secondaryColor` (`PbSecondaryColor?`, optional): Sets the background and text/icon color when `style` is `secondary`. Defaults to purple if omitted.
 - `useWhiteVariant` (`bool`, optional, default: `false`): When `true` and `style` is `primaryLarge`, uses a white background with dark text/icon and 1.5px border.
 - `width` (`double?`, optional): Forces the button to a specific width in logical pixels. If omitted, `primaryLarge` stretches full-width and other styles shrink to content.
+
+## Usage Examples
+### Basic primary large button (full width)
+```dart
+PbButton(
+  style: PbButtonStyle.primaryLarge,
+  label: 'Arrange Viewing',
+  icon: PbIcon.calendarToday(),
+  onPressed: () {
+    // handle tap
+  },
+)
+```
+### Primary large – white variant + fixed width
+```dart
+PbButton(
+  style: PbButtonStyle.primaryLarge,
+  label: 'Contact Agent',
+  icon: PbIcon.phone(),
+  useWhiteVariant: true,
+  width: 240,
+  onPressed: () {},
+)
+```
+
+### Secondary buttons with different colors
+```dart
+Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    PbButton(
+      style: PbButtonStyle.secondary,
+      label: 'Save',
+      icon: PbIcon.star(),
+      secondaryColor: PbSecondaryColor.teal,
+      onPressed: () {},
+    ),
+    const SizedBox(width: 16),
+    PbButton(
+      style: PbButtonStyle.secondary,
+      label: 'Share',
+      icon: PbIcon.share(),
+      secondaryColor: PbSecondaryColor.white,
+      onPressed: () {},
+    ),
+  ],
+)
+```
+
+### Compact pill button
+```dart
+PbButton(
+  style: PbButtonStyle.compact,
+  label: 'Featured',
+  onPressed: () {},
+)
+```
+
+### Loading & disabled states
+```dart
+PbButton(
+  style: PbButtonStyle.primaryLarge,
+  label: 'Processing...',
+  isLoading: true,
+  onPressed: null, // also disables
+)
+```

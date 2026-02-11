@@ -1,0 +1,118 @@
+---
+title: PbIcon
+description: Centralized icon factory for Propertybox app – provides consistent, tintable SVG icons via static methods, with sensible defaults and copyWith support.
+---
+
+# PbIcon Widget
+
+The `PbIcon` class is the single source of truth for all branded SVG icons in the Propertybox design system (used across property cards, campaign dashboards, filters, status badges, etc.).
+
+It offers:
+- Static factory methods like `PbIcon.campaign()` that return a ready-to-use `Widget` (behaves just like Flutter's built-in `Icon`)
+- Default size of **15px** and **black** tint (overridable)
+- Semantic defaults for status icons (e.g. green check, amber star)
+- `.copyWith()` support for easy variations (size, color, fit)
+- Automatic color tinting via `ColorFilter` for perfect matching with text/buttons
+- All icons sourced from `assets/svgs/pb_icons/*.svg` via flutter_gen
+
+<img
+  src="https://raw.githubusercontent.com/FocalAgent-Limited/propertybox-ui/main/docs/components/pb_icon/preview-grid.png"
+  alt="PbIcon gallery – campaign, floorPlan, epc, check, star, etc."
+  width="480"
+/>
+
+*(Replace this URL with a real screenshot/grid showing 12–15 icons in different sizes/colors once you upload it to your repo or CDN)*
+
+## Class Definition
+
+```dart
+class PbIcon {
+  PbIcon._(); // private constructor – static usage only
+
+  // Core UI icons
+  static Widget account({double size = 15.0, Color? color = Colors.black}) => /* ... */;
+  static Widget camera({double size = 15.0, Color? color = Colors.black}) => /* ... */;
+  static Widget search({double size = 15.0, Color? color = Colors.black}) => /* ... */;
+  // ... many more (comment, discussion, writeNotes, view, etc.)
+
+  // Property & marketing icons
+  static Widget campaign({double size = 15.0, Color? color = Colors.black}) => /* ... */;
+  static Widget epc({double size = 15.0, Color? color = Colors.black}) => /* ... */;
+  static Widget floorPlan({double size = 15.0, Color? color = Colors.black}) => /* ... */;
+  static Widget certificate({double size = 15.0, Color? color = Colors.black}) => /* ... */;
+
+  // Status & feedback (with semantic colors)
+  static Widget check({double size = 15.0, Color? color = Colors.green}) => /* ... */;
+  static Widget thumbsUp({double size = 15.0, Color? color = Colors.green}) => /* ... */;
+  static Widget star({double size = 15.0, Color? color = Colors.amber}) => /* ... */;
+
+  // Actions & misc
+  static Widget download({double size = 15.0, Color? color = Colors.black}) => /* ... */;
+  static Widget refreshInCircle({double size = 15.0, Color? color = Colors.black}) => /* ... */;
+  // ... subscription, integrations, preferences, workspace, template, switchButton, spaceShip, login, etc.
+
+  // copyWith entry point (when chaining needed)
+  static PbIconBuilder base(String path, {double size = 15.0, Color? color}) => /* ... */;
+}
+
+// Optional builder for copyWith chaining
+class PbIconBuilder {
+  // ... implementation with copyWith() → returns new builder
+  Widget build() => /* renders SvgPicture.asset */;
+  Widget call() => build(); // allows direct usage as Widget
+}
+```
+
+## Properties
+
+All static methods on `PbIcon` (e.g. `PbIcon.campaign()`, `PbIcon.floorPlan()`, etc.) accept the same set of optional parameters:
+
+- `size` (`double`, optional, default: `15.0`):  
+  The width and height of the icon in logical pixels. Use larger values (e.g. 20–32) for prominent placements like buttons or cards, and smaller values (e.g. 12–16) for inline or list use.
+
+- `color` (`Color?`, optional):  
+  The tint color applied to the SVG via `ColorFilter.mode(..., BlendMode.srcIn)`.  
+  - Most icons default to `Colors.black` for high contrast on light backgrounds.  
+  - Status icons have semantic defaults:  
+    - `check` and `thumbsUp` → `Colors.green`  
+    - `star` → `Colors.amber`  
+  - Commonly overridden to match brand colors (`BrandColors.primary`), button text color, or theme accents.
+
+- `fit` (`BoxFit`, optional, default: `BoxFit.contain`):  
+  Controls how the SVG content fits within its bounding box. Rarely changed — `contain` works best for most icons in the Propertybox design system.
+
+## Usage Examples
+### Basic usage (inline like Icon widget)
+```dart
+Row(
+  children: [
+    PbIcon.campaign(size: 20),
+    const SizedBox(width: 8),
+    PbIcon.floorPlan(color: BrandColors.primary),
+    PbIcon.check(), // uses green by default
+  ],
+)
+```
+
+### In buttons & cards (auto-tinted by parent)
+```dart
+PbButton(
+  style: PbButtonStyle.secondary,
+  label: 'View Floor Plan',
+  icon: PbIcon.floorPlan(), // auto-tinted to button text color
+  secondaryColor: PbSecondaryColor.teal,
+  onPressed: _openFloorPlan,
+)
+```
+
+### Creating variations with copyWith
+```dart
+final baseCampaign = PbIcon.campaign();
+
+Column(
+  children: [
+    baseCampaign.copyWith(size: 32, color: Colors.blueGrey)(),
+    baseCampaign.copyWith(size: 12, color: Colors.grey.shade500)(),
+  ],
+)
+```

@@ -5,7 +5,7 @@
     "logoDark": "/assets/logo.svg",
     "anchors": [
         { "title": "App Staging", "icon": "house", "link": "https://fa-property-box-2-app-staging.azurewebsites.net" },
-        { "title": "Figma Designs", "icon": "figma", "link": "https://www.figma.com/design/24mSoGWIWxWpitijtkSJSN/Propertybox?node-id=31062-18849&t=uuwqDLkmzzMVZq7o-4" },
+        { "title": "Figma Designs", "icon": "figma", "link": "https://www.figma.com/design/24mSoGWIWxWpitijtkSJSN/Propertybox?node-id=43973-18222" },
         { "title": "App BitBucket", "icon": "bitbucket", "link": "https://bitbucket.org/focalagent/propertybox2-app" }
     ],
     "sidebar": [

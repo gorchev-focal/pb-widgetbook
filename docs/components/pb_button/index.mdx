@@ -70,3 +70,14 @@ class PbButton extends StatelessWidget {
   // ... full implementation in pb_button.dart ...
 }
 ```
+
+## Properties
+- `onPressed` (`VoidCallback?`, required): The callback function triggered when the button is tapped. Pass `null` to disable the button.
+- `label` (`String`, required): The text displayed on the button (automatically converted to sentence case).
+- `style` (`PbButtonStyle`, required): Defines the visual style of the button. Must be one of: `primaryLarge`, `secondary`, or `compact`.
+- `icon` (`Widget?`, optional): A `PbIcon` widget to display inside the button. The icon is automatically tinted to match the button's text color.
+- `iconOnTrailing` (`bool`, optional, default: `false`): If `true`, places the icon after the label text instead of before it.
+- `isLoading` (`bool`, optional, default: `false`): When `true`, shows a centered loading spinner instead of the label and icon.
+- `secondaryColor` (`PbSecondaryColor?`, optional): Sets the background and text/icon color when `style` is `secondary`. Defaults to purple if omitted.
+- `useWhiteVariant` (`bool`, optional, default: `false`): When `true` and `style` is `primaryLarge`, uses a white background with dark text/icon and 1.5px border.
+- `width` (`double?`, optional): Forces the button to a specific width in logical pixels. If omitted, `primaryLarge` stretches full-width and other styles shrink to content.

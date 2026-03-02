@@ -4,7 +4,7 @@ This repository contains the documentation for the **Propertybox UI elements**. 
 
 ## Viewing the Documentation
 
-You can view the full documentation for Propertybox UI elements at [[(https://docs.page/FocalAgent-Ltd/pb-widgetbook)](https://docs.page/FocalAgent-Ltd/pb-widgetbook).
+You can view the full documentation for Propertybox UI elements at <a href="https://docs.page/FocalAgent-Ltd/pb-widgetbook" target="_blank">https://docs.page/FocalAgent-Ltd/pb-widgetbook</a>.
 
 ## Contributing to the Documentation
 
